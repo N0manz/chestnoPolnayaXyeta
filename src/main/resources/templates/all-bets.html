@@ -2,36 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Все ставки</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h2>Все ставки пользователей</h2>
+<div class="container">
 
-<a th:href="@{/}">На главную</a>
+    <div class="header">
+        <div>
+            <h2>Все ставки пользователей</h2>
+        </div>
 
-<hr>
+        <div>
+            <a th:href="@{/}" class="nav-link">На главную</a>
+        </div>
+    </div>
 
-<table border="1">
-    <tr>
-        <th>Пользователь</th>
-        <th>Матч</th>
-        <th>Выбор</th>
-        <th>Сумма</th>
-        <th>Коэф</th>
-        <th>Статус</th>
-        <th>Дата</th>
-    </tr>
+    <div class="bets-grid">
 
-    <tr th:each="bet : ${bets}">
-        <td th:text="${bet.user.username}"></td>
-        <td th:text="${bet.event.team1 + ' vs ' + bet.event.team2}"></td>
-        <td th:text="${bet.choice}"></td>
-        <td th:text="${bet.amount}"></td>
-        <td th:text="${bet.coefAtMoment}"></td>
-        <td th:text="${bet.status}"></td>
-        <td th:text="${bet.createdAt}"></td>
-    </tr>
-</table>
+        <div class="bet-card" th:each="bet : ${bets}">
+
+            <div class="bet-top">
+                <div class="bet-user"
+                     th:text="${bet.user.username}">
+                </div>
+
+                <div class="bet-status"
+                     th:text="${bet.status}"
+                     th:class="'bet-status status-' + ${bet.status}">
+                </div>
+            </div>
+
+            <div class="bet-match"
+                 th:text="${bet.event.team1 + ' — ' + bet.event.team2}">
+            </div>
+
+            <div class="bet-details">
+
+                <div class="bet-detail">
+                    <span>Выбор</span>
+                    <strong th:text="${bet.choice}"></strong>
+                </div>
+
+                <div class="bet-detail">
+                    <span>Сумма</span>
+                    <strong th:text="${bet.amount}"></strong>
+                </div>
+
+                <div class="bet-detail">
+                    <span>Коэф</span>
+                    <strong th:text="${bet.coefAtMoment}"></strong>
+                </div>
+
+                <div class="bet-detail">
+                    <span>Дата</span>
+                    <strong th:text="${bet.createdAt}"></strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
