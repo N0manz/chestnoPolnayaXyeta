@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin Panel</title>
+</head>
+<body>
+
+<h2>ADMIN PANEL</h2>
+
+<a th:href="@{/}">На главную</a>
+
+<hr>
+
+<h3>Создать событие</h3>
+
+<form th:action="@{/admin/create}" method="post" th:object="${eventForm}">
+  <input type="text" th:field="*{team1}" placeholder="Команда 1" required/>
+  <input type="text" th:field="*{team2}" placeholder="Команда 2" required/>
+
+  <input type="datetime-local" th:field="*{startTime}" required/>
+  <input type="datetime-local" th:field="*{endTime}"/>
+
+  <input type="number" step="0.01" th:field="*{coefFirst}" placeholder="Коэф 1" required/>
+  <input type="number" step="0.01" th:field="*{coefSecond}" placeholder="Коэф 2" required/>
+
+  <button type="submit">Создать</button>
+</form>
+
+<hr>
+
+<h3>Все события</h3>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Матч</th>
+    <th>Статус</th>
+    <th>Результат</th>
+    <th>Установить результат</th>
+  </tr>
+
+  <tr th:each="event : ${events}">
+    <td th:text="${event.id}"></td>
+    <td th:text="${event.team1 + ' vs ' + event.team2}"></td>
+    <td th:text="${event.status}"></td>
+    <td th:text="${event.result}"></td>
+
+    <td>
+      <form th:action="@{/admin/set-result}" method="post">
+        <input type="hidden" name="eventId"
+               th:value="${event.id}"/>
+
+        <select name="result">
+          <option value="WIN_FIRST">Победа 1</option>
+          <option value="WIN_SECOND">Победа 2</option>
+        </select>
+
+        <button type="submit">Установить</button>
+      </form>
+    </td>
+  </tr>
+
+</table>
+
+</body>
+</html>

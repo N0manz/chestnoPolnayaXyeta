@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Мои ставки</title>
+</head>
+<body>
+
+<h2>Мои ставки</h2>
+
+<a th:href="@{/}">На главную</a>
+
+<hr>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Матч</th>
+        <th>Выбор</th>
+        <th>Сумма</th>
+        <th>Коэф</th>
+        <th>Потенциальный выигрыш</th>
+        <th>Статус</th>
+        <th>Дата</th>
+    </tr>
+
+    <tr th:each="bet : ${bets}">
+        <td th:text="${bet.id}"></td>
+
+        <td th:text="${bet.event.team1 + ' vs ' + bet.event.team2}"></td>
+
+        <td th:text="${bet.choice}"></td>
+
+        <td th:text="${bet.amount}"></td>
+
+        <td th:text="${bet.coefAtMoment}"></td>
+
+        <td th:text="${bet.amount.multiply(bet.coefAtMoment)}"></td>
+
+        <td th:text="${bet.status}"></td>
+
+        <td th:text="${bet.createdAt}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

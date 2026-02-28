@@ -1,0 +1,310 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BASE */
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.6;
+    padding: 40px 80px;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3 {
+    font-weight: 500;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    border-bottom: 1px solid transparent;
+    transition: 0.2s ease;
+}
+
+a:hover {
+    border-bottom: 1px solid #000;
+}
+
+/* HEADER BAR */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #000;
+}
+
+.balance {
+    font-weight: 500;
+}
+
+/* TABLES */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    text-align: left;
+    font-weight: 500;
+    padding: 15px 10px;
+    border-bottom: 1px solid #000;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #f7f7f7;
+}
+
+/* FORMS */
+form {
+    display: inline-block;
+}
+
+input, select {
+    border: 1px solid #000;
+    background: #fff;
+    padding: 8px 12px;
+    font-size: 14px;
+    outline: none;
+    margin-right: 8px;
+}
+
+input:focus, select:focus {
+    border: 1px solid #000;
+}
+
+/* BUTTONS */
+button {
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* MESSAGES */
+.message-success {
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.message-error {
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* STATUS */
+.status-WON {
+    font-weight: 600;
+}
+
+.status-LOST {
+    opacity: 0.5;
+}
+
+.status-PENDING {
+    font-style: italic;
+}
+
+/* CONTAINER WIDTH */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===============================
+   LAYOUT IMPROVEMENTS
+================================ */
+
+body {
+    padding: 40px 60px;
+}
+
+.header h2 {
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.header p {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.balance {
+    margin-right: 20px;
+}
+
+/* ===============================
+   TABLE IMPROVEMENTS
+================================ */
+
+table {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+th {
+    text-transform: uppercase;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+td {
+    vertical-align: middle;
+}
+
+tr {
+    transition: 0.2s ease;
+}
+
+tr:hover {
+    background-color: #fafafa;
+}
+
+/* ===============================
+   FORM IMPROVEMENTS
+================================ */
+
+form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+input[type="number"] {
+    width: 100px;
+}
+
+select {
+    cursor: pointer;
+}
+
+button {
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* ===============================
+   MESSAGES
+================================ */
+
+.message-success {
+    color: #000;
+    background: #f5f5f5;
+    padding: 12px 16px;
+    border-left: 3px solid #000;
+}
+
+.message-error {
+    color: #000;
+    background: #f9f9f9;
+    padding: 12px 16px;
+    border-left: 3px solid #000;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+
+    body {
+        padding: 30px 30px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .header > div:last-child {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+    input[type="number"] {
+        width: 80px;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+
+    .header h2 {
+        font-size: 22px;
+    }
+
+    .balance {
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    input, select {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+}
