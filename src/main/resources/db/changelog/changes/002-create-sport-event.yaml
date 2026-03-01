@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-sport-event
+      author: sergey
+      changes:
+        - createTable:
+            tableName: sport_event
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: team1
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: team2
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: result
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_time
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_time
+                  type: TIMESTAMP
+              - column:
+                  name: coef_first
+                  type: NUMERIC(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: coef_second
+                  type: NUMERIC(10,2)
+                  constraints:
+                    nullable: false

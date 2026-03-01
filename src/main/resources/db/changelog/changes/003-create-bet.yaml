@@ -1,0 +1,76 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-bet
+      author: sergio
+      changes:
+        - createTable:
+            tableName: bet
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: event_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: choice
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: NUMERIC(19,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: coef_at_moment
+                  type: NUMERIC(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: bet
+            baseColumnNames: user_id
+            constraintName: fk_bet_user
+            referencedTableName: app_user
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: bet
+            baseColumnNames: event_id
+            constraintName: fk_bet_event
+            referencedTableName: sport_event
+            referencedColumnNames: id
+
+        - createIndex:
+            tableName: bet
+            indexName: idx_bet_user
+            columns:
+              - column:
+                  name: user_id
+
+        - createIndex:
+            tableName: bet
+            indexName: idx_bet_event
+            columns:
+              - column:
+                  name: event_id

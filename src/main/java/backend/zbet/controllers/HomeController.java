@@ -5,6 +5,8 @@ import backend.zbet.entity.EventStatus;
 import backend.zbet.entity.SportEvent;
 import backend.zbet.repository.SportEventRepository;
 import backend.zbet.service.CustomUserDetails;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
+@Tag(name = "Home", description = "Эндпойнты домашней странцицы")
 @Controller
 public class HomeController {
 
@@ -23,6 +26,8 @@ public class HomeController {
         this.eventRepository = eventRepository;
     }
 
+    @Operation(summary = "Home page",
+            description = "Возвращает все активные события пользователя")
     @GetMapping("/")
     public String home(Model model, Authentication authentication) {
 

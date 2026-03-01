@@ -3,6 +3,9 @@ package backend.zbet.controllers;
 import backend.zbet.entity.*;
 import backend.zbet.repository.BetRepository;
 import backend.zbet.repository.SportEventRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Tag(name = "Admin", description = "Админская панель")
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -25,6 +29,8 @@ public class AdminController {
         this.betRepository = betRepository;
     }
 
+    @Operation(summary = "Admin page",
+            description = "Возвращает админскую страницу со всеми матчами")
     @GetMapping
     public String adminPage(Model model) {
         model.addAttribute("events", eventRepository.findAll());
@@ -32,6 +38,8 @@ public class AdminController {
         return "admin";
     }
 
+    @Operation(summary = "Create new event",
+            description = "Создаём новое спортивное событие")
     @PostMapping("/create")
     public String createEvent(@ModelAttribute SportEvent event) {
 
@@ -43,10 +51,13 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+
+    @Operation(summary = "Set event result",
+            description = "Установить результат текущего события")
     @PostMapping("/set-result")
     @Transactional
-    public String setResult(@RequestParam Long eventId,
-                            @RequestParam EventResult result) {
+    public String setResult(@Parameter(description = "Id события") @RequestParam Long eventId,
+                            @Parameter(description = "Результат события") @RequestParam EventResult result) {
 
         SportEvent event = eventRepository.findById(eventId)
                 .orElseThrow();

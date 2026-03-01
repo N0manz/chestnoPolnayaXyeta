@@ -5,6 +5,9 @@ import backend.zbet.entity.Bet;
 import backend.zbet.entity.BetChoice;
 import backend.zbet.service.BetService;
 import backend.zbet.service.CustomUserDetails;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Tag(name = "Bets", description = "Управление ставками")
 @Controller
 public class BetController {
 
@@ -27,10 +31,12 @@ public class BetController {
         this.betService = betService;
     }
 
+    @Operation(summary = "Place a bet",
+            description = "Установить ставку для авторизованного юзера")
     @PostMapping("/bet")
-    public String placeBet(@RequestParam Long eventId,
-                           @RequestParam BetChoice choice,
-                           @RequestParam BigDecimal amount,
+    public String placeBet(@Parameter(description = "Id события") @RequestParam Long eventId,
+                           @Parameter(description = "Выбор на победу Первой/Второй команды") @RequestParam BetChoice choice,
+                           @Parameter(description = "Сумма ставки") @RequestParam BigDecimal amount,
                            Authentication authentication,
                            RedirectAttributes redirectAttributes) {
 
@@ -53,6 +59,8 @@ public class BetController {
         return "redirect:/";
     }
 
+    @Operation(summary = "User bets",
+            description = "возвращает все ставки конкретного пользователя")
     @GetMapping("/my-bets")
     public String myBets(Model model, Authentication authentication) {
 
